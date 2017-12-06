@@ -1,5 +1,6 @@
 package com.hanmajid.pengcitultimatepackage.shared;
 
+import android.graphics.Bitmap;
 import android.graphics.Color;
 
 /**
@@ -15,16 +16,27 @@ public class MyImage {
     private int[][] green;
     private int width;
     private int height;
+    private Bitmap.Config config;
 
-    public MyImage(int[][] red, int[][] blue, int[][] green) {
+    public Bitmap.Config getConfig() {
+        return config;
+    }
+
+    public void setConfig(Bitmap.Config config) {
+        this.config = config;
+    }
+
+    public MyImage() {
+    }
+
+    public MyImage(int[][] red, int[][] green, int[][] blue, Bitmap.Config config) {
         this.red = red;
+
         this.blue = blue;
         this.green = green;
         this.width = red[0].length;
         this.height = red.length;
-    }
-
-    public MyImage() {
+        this.config = config;
     }
 
     public int[][] getRed() {
@@ -72,6 +84,9 @@ public class MyImage {
         img.red = src.red.clone();
         img.green = src.green.clone();
         img.blue = src.blue.clone();
+        img.width = src.width;
+        img.height = src.height;
+        img.config = src.config;
         return img;
     }
 
@@ -83,5 +98,17 @@ public class MyImage {
         red[y][x] = (color >> 16) & 0xFF;
         green[y][x] = (color >> 8) & 0xFF;
         blue[y][x] = color & 0xFF;
+    }
+
+    public int getRed(int x, int y) {
+        return red[y][x];
+    }
+
+    public int getBlue(int x, int y) {
+        return blue[y][x];
+    }
+
+    public int getGreen(int x, int y) {
+        return green[y][x];
     }
 }

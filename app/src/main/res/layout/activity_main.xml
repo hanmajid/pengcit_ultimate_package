@@ -7,6 +7,35 @@
     android:layout_height="match_parent"
     tools:context="com.hanmajid.pengcitultimatepackage.MainActivity">
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/img_original"
+                android:src="@drawable/anthony"
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"/>
+
+            <ImageView
+                android:id="@+id/img_processed"
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"/>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_process"
+            android:text="Process"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
 
 </ScrollView>
