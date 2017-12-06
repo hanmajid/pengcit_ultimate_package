@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.util.Log;
 
+import com.hanmajid.pengcitultimatepackage.shared.MyColor;
 import com.hanmajid.pengcitultimatepackage.shared.MyImage;
 
 /**
@@ -13,9 +14,7 @@ import com.hanmajid.pengcitultimatepackage.shared.MyImage;
  * Created on 12/6/2017.
  */
 
-public class ZhangSuen implements Thinning {
-    int BLACK = Color.rgb(0, 0, 0);
-    int WHITE = Color.rgb(255, 255, 255);
+public class ZhangSuen implements IThinning {
 
     @Override
     public MyImage doThinning(MyImage src, Color targetColor) {
@@ -37,14 +36,14 @@ public class ZhangSuen implements Thinning {
                     int countNeighbour = countNeighbour(x, y, width, height);
                     if(countNeighbour == 8) {
                         int color = img.getColor(x, y);
-                        if(color == BLACK) {
+                        if(color == MyColor.BLACK) {
                             int BP1 = bP1(img, x, y);
                             if(2 <= BP1 && BP1 <= 6) {
                                 int AP1 = aP1(img, x, y);
                                 if(AP1 == 1) {
                                     if(existsWhiteP2P4P6(img, x, y)) {
                                         if(existsWhiteP4P6P8(img, x, y)) {
-                                            img.setColor(WHITE, x, y);
+                                            img.setColor(MyColor.WHITE, x, y);
                                             countStep1++;
                                         }
                                     }
@@ -62,14 +61,14 @@ public class ZhangSuen implements Thinning {
                     int countNeighbour = countNeighbour(x, y, width, height);
                     if(countNeighbour == 8) {
                         int color = img.getColor(x, y);
-                        if(color == BLACK) {
+                        if(color == MyColor.BLACK) {
                             int BP1 = bP1(img, x, y);
                             if(2 <= BP1 && BP1 <= 6) {
                                 int AP1 = aP1(img, x, y);
                                 if(AP1 == 1) {
                                     if(existsWhiteP2P4P8(img, x, y)) {
                                         if(existsWhiteP2P6P8(img, x, y)) {
-                                            img.setColor(WHITE, x, y);
+                                            img.setColor(MyColor.WHITE, x, y);
                                             countStep2++;
                                         }
                                     }
@@ -88,15 +87,15 @@ public class ZhangSuen implements Thinning {
     private boolean existsWhiteP2P4P8(MyImage img, int x, int y) {
         // P2
         int color = img.getColor(x, y-1);
-        if(color == WHITE)
+        if(color == MyColor.WHITE)
             return true;
         // P4
         color = img.getColor(x+1, y);
-        if(color == WHITE)
+        if(color == MyColor.WHITE)
             return true;
         // P8
         color = img.getColor(x-1, y);
-        if(color == WHITE)
+        if(color == MyColor.WHITE)
             return true;
         return false;
     }
@@ -104,15 +103,15 @@ public class ZhangSuen implements Thinning {
     private boolean existsWhiteP2P6P8(MyImage img, int x, int y) {
         // P2
         int color = img.getColor(x, y-1);
-        if(color == WHITE)
+        if(color == MyColor.WHITE)
             return true;
         // P6
         color = img.getColor(x, y+1);
-        if(color == WHITE)
+        if(color == MyColor.WHITE)
             return true;
         // P8
         color = img.getColor(x-1, y);
-        if(color == WHITE)
+        if(color == MyColor.WHITE)
             return true;
         return false;
     }
@@ -120,15 +119,15 @@ public class ZhangSuen implements Thinning {
     private boolean existsWhiteP4P6P8(MyImage img, int x, int y) {
         // P4
         int color = img.getColor(x+1, y);
-        if(color == WHITE)
+        if(color == MyColor.WHITE)
             return true;
         // P6
         color = img.getColor(x, y+1);
-        if(color == WHITE)
+        if(color == MyColor.WHITE)
             return true;
         // P8
         color = img.getColor(x-1, y);
-        if(color == WHITE)
+        if(color == MyColor.WHITE)
             return true;
         return false;
     }
@@ -136,15 +135,15 @@ public class ZhangSuen implements Thinning {
     private boolean existsWhiteP2P4P6(MyImage img, int x, int y) {
         // P2
         int color = img.getColor(x, y-1);
-        if(color == WHITE)
+        if(color == MyColor.WHITE)
             return true;
         // P4
         color = img.getColor(x+1, y);
-        if(color == WHITE)
+        if(color == MyColor.WHITE)
             return true;
         // P6
         color = img.getColor(x, y+1);
-        if(color == WHITE)
+        if(color == MyColor.WHITE)
             return true;
         return false;
     }
@@ -154,7 +153,7 @@ public class ZhangSuen implements Thinning {
         for(int j = -1; j <= 1; j++) {
             for(int i = -1; i <= 1; i++) {
                 if(i != 0 || j != 0) {
-                    if (img.getColor(i, j) == BLACK) {
+                    if (img.getColor(i, j) == MyColor.BLACK) {
                         countBlack++;
                     }
                 }
@@ -165,50 +164,50 @@ public class ZhangSuen implements Thinning {
 
     private int aP1(MyImage img, int x, int y) {
         int countTransition = 0;
-        int prevColor = BLACK;
+        int prevColor = MyColor.BLACK;
         // P2
         int color = img.getColor(x, y-1);
-        if(prevColor == WHITE && color == BLACK)
+        if(prevColor == MyColor.WHITE && color == MyColor.BLACK)
             countTransition++;
         // P3
         prevColor = color;
         color = img.getColor(x+1, y-1);
-        if(prevColor == WHITE && color == BLACK)
+        if(prevColor == MyColor.WHITE && color == MyColor.BLACK)
             countTransition++;
         // P4
         prevColor = color;
         color = img.getColor(x+1, y);
-        if(prevColor == WHITE && color == BLACK)
+        if(prevColor == MyColor.WHITE && color == MyColor.BLACK)
             countTransition++;
         // P5
         prevColor = color;
         color = img.getColor(x+1, y+1);
-        if(prevColor == WHITE && color == BLACK)
+        if(prevColor == MyColor.WHITE && color == MyColor.BLACK)
             countTransition++;
         // P6
         prevColor = color;
         color = img.getColor(x, y+1);
-        if(prevColor == WHITE && color == BLACK)
+        if(prevColor == MyColor.WHITE && color == MyColor.BLACK)
             countTransition++;
         // P7
         prevColor = color;
         color = img.getColor(x-1, y+1);
-        if(prevColor == WHITE && color == BLACK)
+        if(prevColor == MyColor.WHITE && color == MyColor.BLACK)
             countTransition++;
         // P8
         prevColor = color;
         color = img.getColor(x-1, y);
-        if(prevColor == WHITE && color == BLACK)
+        if(prevColor == MyColor.WHITE && color == MyColor.BLACK)
             countTransition++;
         // P9
         prevColor = color;
         color = img.getColor(x-1, y-1);
-        if(prevColor == WHITE && color == BLACK)
+        if(prevColor == MyColor.WHITE && color == MyColor.BLACK)
             countTransition++;
         // P2
         prevColor = color;
         color = img.getColor(x, y-1);
-        if(prevColor == WHITE && color == BLACK)
+        if(prevColor == MyColor.WHITE && color == MyColor.BLACK)
             countTransition++;
         return countTransition;
     }

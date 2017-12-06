@@ -84,4 +84,16 @@ public class MyImage {
         green[y][x] = (color >> 8) & 0xFF;
         blue[y][x] = color & 0xFF;
     }
+
+    public int getRed(int x, int y) {
+        return red[y][x];
+    }
+
+    public int getBlue(int x, int y) {
+        return blue[y][x];
+    }
+
+    public int getGreen(int x, int y) {
+        return green[y][x];
+    }
 }
