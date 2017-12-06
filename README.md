@@ -4,7 +4,10 @@
 
 * [shared/](app/src/main/java/com/hanmajid/pengcitultimatepackage/shared)  
   - `MyImage.java`  
-  - `MyColor.java`  
+  - `MyColor.java`
+* [bordertracing/](app/src/main/java/com/hanmajid/pengcitultimatepackage/bordertracing)
+  - `IBorderTracing.java`
+  - `ChainCodeBorderTracing.java`
 * [grayscaling/](app/src/main/java/com/hanmajid/pengcitultimatepackage/grayscaling)  
   - `IGrayscaling.java`  
   - `GleamGrayscaling.java`  
@@ -16,7 +19,9 @@
   - `LusterGrayscaling.java`  
   - `LusterGCGrayscaling.java`  
   - `ValueGrayscaling.java`  
-  - `ValueGCGrayscaling.java`  
+  - `ValueGCGrayscaling.java`
+* [histogram/](app/src/main/java/com/hanmajid/pengcitultimatepackage/histogram)
+  - `IHistogram.java`
 * [thinning/](app/src/main/java/com/hanmajid/pengcitultimatepackage/thinning)  
   - `IThinning.java`  
   - `ZhangSuenThinning.java`  
