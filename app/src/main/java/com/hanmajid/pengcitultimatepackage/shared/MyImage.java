@@ -1,7 +1,12 @@
 package com.hanmajid.pengcitultimatepackage.shared;
 
+import android.graphics.Color;
+
 /**
- * Created by hanmajid on 12/6/2017.
+ * Project: PengcitUltimatePackage
+ * by hanmajid (email: han.majid2004@gmail.com)
+ *
+ * Created on 12/6/2017.
  */
 
 public class MyImage {
@@ -68,5 +73,15 @@ public class MyImage {
         img.green = src.green.clone();
         img.blue = src.blue.clone();
         return img;
+    }
+
+    public int getColor(int x, int y) {
+        return Color.rgb(red[y][x], green[y][x], blue[y][x]);
+    }
+
+    public void setColor(int color, int x, int y) {
+        red[y][x] = (color >> 16) & 0xFF;
+        green[y][x] = (color >> 8) & 0xFF;
+        blue[y][x] = color & 0xFF;
     }
 }
