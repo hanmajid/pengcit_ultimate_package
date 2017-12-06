@@ -1,4 +1,4 @@
-package com.hanmajid.pengcitultimatepackage.thresholding.binary;
+package com.hanmajid.pengcitultimatepackage.thresholding;
 
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -14,9 +14,9 @@ import com.hanmajid.pengcitultimatepackage.thresholding.IThresholding;
  * Created on 12/6/2017.
  */
 
-public class OtsuBinaryThresholding implements IThresholding {
+public class OtsuThresholding implements IThresholding {
 
-    public OtsuBinaryThresholding() {
+    public OtsuThresholding() {
     }
 
     @Override

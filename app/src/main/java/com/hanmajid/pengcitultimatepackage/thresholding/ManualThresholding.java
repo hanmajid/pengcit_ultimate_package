@@ -1,4 +1,4 @@
-package com.hanmajid.pengcitultimatepackage.thresholding.binary;
+package com.hanmajid.pengcitultimatepackage.thresholding;
 
 import com.hanmajid.pengcitultimatepackage.shared.MyColor;
 import com.hanmajid.pengcitultimatepackage.shared.MyImage;
@@ -11,11 +11,11 @@ import com.hanmajid.pengcitultimatepackage.thresholding.IThresholding;
  * Created on 12/6/2017.
  */
 
-public class ManualBinaryThresholding implements IThresholding {
+public class ManualThresholding implements IThresholding {
 
     private int threshold;
 
-    ManualBinaryThresholding(int threshold) {
+    ManualThresholding(int threshold) {
         this.threshold = threshold;
     }
 
