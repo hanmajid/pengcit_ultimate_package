@@ -14,7 +14,7 @@ import com.hanmajid.pengcitultimatepackage.shared.MyImage;
  * Created on 12/6/2017.
  */
 
-public class ZhangSuen implements IThinning {
+public class ZhangSuenThinning implements IThinning {
 
     @Override
     public MyImage doThinning(MyImage src, Color targetColor) {
