@@ -13,5 +13,5 @@ import com.hanmajid.pengcitultimatepackage.shared.MyImage;
 
 
 public interface IThinning {
-    public MyImage doThinning(MyImage src, Color targetColor);
+    public MyImage doThinning(MyImage src);
 }

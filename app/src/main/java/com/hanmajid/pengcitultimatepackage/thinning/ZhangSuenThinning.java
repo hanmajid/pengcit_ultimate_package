@@ -17,7 +17,7 @@ import com.hanmajid.pengcitultimatepackage.shared.MyImage;
 public class ZhangSuenThinning implements IThinning {
 
     @Override
-    public MyImage doThinning(MyImage src, Color targetColor) {
+    public MyImage doThinning(MyImage src) {
         MyImage img = src.clone(src);
 
         int width = img.getWidth();
@@ -153,7 +153,7 @@ public class ZhangSuenThinning implements IThinning {
         for(int j = -1; j <= 1; j++) {
             for(int i = -1; i <= 1; i++) {
                 if(i != 0 || j != 0) {
-                    if (img.getColor(i, j) == MyColor.BLACK) {
+                    if (img.getColor(x+i, y+j) == MyColor.BLACK) {
                         countBlack++;
                     }
                 }
