@@ -1,5 +1,7 @@
 package com.hanmajid.pengcitultimatepackage.histogram;
 
+import android.graphics.Color;
+
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.BarData;
@@ -11,6 +13,7 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.hanmajid.pengcitultimatepackage.shared.Distribution;
 import com.hanmajid.pengcitultimatepackage.shared.MyColor;
 import com.hanmajid.pengcitultimatepackage.shared.MyImage;
+import com.hanmajid.pengcitultimatepackage.shared.ValueMapping;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,8 +63,39 @@ public class MyHistogram implements IHistogram {
     }
 
     @Override
-    public Distribution equalizeHistogram(BarChart chart) {
-        return null;
+    public MyImage equalizeHistogram(MyImage src) {
+        Distribution distribution = countCumulativeDistribution(src);
+        ValueMapping valueMapping = getEqualizationHistogramMapping(distribution);
+
+        MyImage img = src.clone();
+
+        int width = img.getWidth();
+        int height = img.getHeight();
+
+        int oldValue, newValue;
+        for(int y = 0; y < height; y++) {
+            for(int x = 0; x < width; x++) {
+                oldValue = img.getRed(x, y);
+                newValue = valueMapping.getNewValue(oldValue);
+                img.setColor(Color.rgb(newValue, newValue, newValue), x, y);
+            }
+        }
+
+        return img;
+    }
+
+    public ValueMapping getEqualizationHistogramMapping(Distribution distribution) {
+        int length = distribution.getLength();
+        int size = distribution.getSize();
+        int[] oldValue = new int[length];
+        int[] newValue = new int[length];
+
+        for(int i = 1; i < length; i++) {
+            oldValue[i] = i;
+            newValue[i] = (int)(((float)distribution.getIntensity(i) / size)*(length-1));
+        }
+
+        return new ValueMapping(oldValue, newValue, length);
     }
 
     @Override
@@ -94,11 +128,11 @@ public class MyHistogram implements IHistogram {
             }
         }
 
-        return new Distribution(256, red, green, blue, intensity);
+        return new Distribution(256, red, green, blue, intensity, height*width);
     }
 
     @Override
-    public Distribution countCummulativeDistribution(MyImage src) {
+    public Distribution countCumulativeDistribution(MyImage src) {
         Distribution distribution = countDistribution(src);
 
         for(int i = 1; i < distribution.getLength(); i++) {

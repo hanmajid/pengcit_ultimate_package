@@ -3,6 +3,9 @@ package com.hanmajid.pengcitultimatepackage.shared;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 /**
  * Project: PengcitUltimatePackage
  * by hanmajid (email: han.majid2004@gmail.com)
@@ -16,27 +19,26 @@ public class MyImage {
     private int[][] green;
     private int width;
     private int height;
-    private Bitmap.Config config;
+    private Bitmap bitmap;
 
-    public Bitmap.Config getConfig() {
-        return config;
+    public Bitmap getBitmap() {
+        return bitmap;
     }
 
-    public void setConfig(Bitmap.Config config) {
-        this.config = config;
+    public void setBitmap(Bitmap bitmap) {
+        this.bitmap = bitmap;
     }
 
     public MyImage() {
     }
 
-    public MyImage(int[][] red, int[][] green, int[][] blue, Bitmap.Config config) {
+    public MyImage(int[][] red, int[][] green, int[][] blue, Bitmap bitmap) {
         this.red = red;
-
         this.blue = blue;
         this.green = green;
         this.width = red[0].length;
         this.height = red.length;
-        this.config = config;
+        this.bitmap = bitmap;
     }
 
     public int[][] getRed() {
@@ -79,14 +81,21 @@ public class MyImage {
         this.height = height;
     }
 
-    public MyImage clone(MyImage src) {
+    public MyImage clone() {
         MyImage img = new MyImage();
-        img.red = src.red.clone();
-        img.green = src.green.clone();
-        img.blue = src.blue.clone();
-        img.width = src.width;
-        img.height = src.height;
-        img.config = src.config;
+        img.red = new int[this.height][this.width];
+        img.green = new int[this.height][this.width];
+        img.blue = new int[this.height][this.width];
+        for(int y = 0; y < this.height; y++) {
+            for(int x = 0; x < this.width; x++) {
+                img.red[y][x] = this.red[y][x];
+                img.green[y][x] = this.green[y][x];
+                img.blue[y][x] = this.blue[y][x];
+            }
+        }
+        img.width = this.width;
+        img.height = this.height;
+        img.bitmap = this.bitmap.copy(this.bitmap.getConfig(), true);
         return img;
     }
 

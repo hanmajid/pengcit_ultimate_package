@@ -8,6 +8,7 @@ package com.hanmajid.pengcitultimatepackage;
  */
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.app.AppCompatActivity;
@@ -27,6 +28,8 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.hanmajid.pengcitultimatepackage.grayscaling.GleamGrayscaling;
+import com.hanmajid.pengcitultimatepackage.grayscaling.IntensityGrayscaling;
+import com.hanmajid.pengcitultimatepackage.grayscaling.ValueGrayscaling;
 import com.hanmajid.pengcitultimatepackage.histogram.MyHistogram;
 import com.hanmajid.pengcitultimatepackage.shared.Distribution;
 import com.hanmajid.pengcitultimatepackage.shared.MyImage;
@@ -56,8 +59,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         LineChart chart = (LineChart) findViewById(R.id.chart);
         MyHistogram myHistogram = new MyHistogram();
-//        Distribution distribution = myHistogram.countDistribution(imgOriginal);
-        Distribution distribution = myHistogram.countCummulativeDistribution(imgOriginal);
+        Distribution distribution = myHistogram.countDistribution(imgOriginal);
+//        Distribution distribution = myHistogram.countCummulativeDistribution(imgOriginal);
         myHistogram.drawColorHistogram(chart, distribution);
     }
 
@@ -82,27 +85,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void process() {
         // convert to MyImage
-        Bitmap bitmapOriginal =((BitmapDrawable)imgViewOriginal.getDrawable()).getBitmap();
+        Bitmap bitmapOriginal = BitmapFactory.decodeResource(getResources(), R.drawable.anthony);
         MyImage imgOriginal = BitmapToMyImage(bitmapOriginal);
-        MyImage imgProcessed;
+        MyImage imgProcessed, imgProcessed2;
 
         // process
-        GleamGrayscaling gleamGrayscaling = new GleamGrayscaling();
-        imgProcessed = gleamGrayscaling.doGrayscaling(imgOriginal);
-        OtsuThresholding otsuThresholding = new OtsuThresholding();
-        imgProcessed = otsuThresholding.doThresholding(imgProcessed);
-        ZhangSuenThinning zhangSuenThinning = new ZhangSuenThinning();
-        imgProcessed = zhangSuenThinning.doThinning(imgOriginal);
+//        GleamGrayscaling gleamGrayscaling = new GleamGrayscaling();
+//        imgProcessed = gleamGrayscaling.doGrayscaling(imgOriginal);
+        IntensityGrayscaling intensityGrayscaling = new IntensityGrayscaling();
+        imgProcessed = intensityGrayscaling.doGrayscaling(imgOriginal);
+//        ValueGrayscaling valueGrayscaling = new ValueGrayscaling();
+//        imgProcessed = valueGrayscaling.doGrayscaling(imgOriginal);
+        MyHistogram myHistogram = new MyHistogram();
+        imgProcessed2 = myHistogram.equalizeHistogram(imgProcessed);
+
+//        OtsuThresholding otsuThresholding = new OtsuThresholding();
+//        imgProcessed = otsuThresholding.doThresholding(imgProcessed);
+//        ZhangSuenThinning zhangSuenThinning = new ZhangSuenThinning();
+//        imgProcessed = zhangSuenThinning.doThinning(imgOriginal);
 
         // convert to bitmap
         Bitmap bitmapProcessed = MyImageToBitmap(imgProcessed);
-        imgViewProcessed.setImageBitmap(bitmapProcessed);
+        Bitmap bitmapProcessed2 = MyImageToBitmap(imgProcessed2);
+        imgViewOriginal.setImageBitmap(bitmapProcessed);
+        imgViewProcessed.setImageBitmap(bitmapProcessed2);
     }
 
     private Bitmap MyImageToBitmap(MyImage img) {
         int width = img.getWidth();
         int height = img.getHeight();
-        Bitmap bitmap = Bitmap.createBitmap(width, height, img.getConfig());
+        Bitmap bitmap = img.getBitmap().copy(img.getBitmap().getConfig(), true);
         int color;
 
         for(int y = 0; y < height; y++) {
@@ -135,7 +147,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 blue[y][x] = B;
             }
         }
-        MyImage img = new MyImage(red, green, blue, src.getConfig());
+        MyImage img = new MyImage(red, green, blue, src);
 
         return img;
     }

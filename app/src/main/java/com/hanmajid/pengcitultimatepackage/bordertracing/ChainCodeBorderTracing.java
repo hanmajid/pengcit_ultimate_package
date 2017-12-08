@@ -21,7 +21,7 @@ public class ChainCodeBorderTracing implements IBorderTracing {
 
     @Override
     public MyImage doBorderTracing(MyImage src) {
-        MyImage img = src.clone(src);
+        MyImage img = src.clone();
 
         int width = img.getWidth();
         int height = img.getHeight();

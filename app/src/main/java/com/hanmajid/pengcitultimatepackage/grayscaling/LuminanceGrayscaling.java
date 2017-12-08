@@ -15,7 +15,7 @@ public class LuminanceGrayscaling implements IGrayscaling {
 
     @Override
     public MyImage doGrayscaling(MyImage src) {
-        MyImage img = src.clone(src);
+        MyImage img = src.clone();
 
         int width = img.getWidth();
         int height = img.getHeight();

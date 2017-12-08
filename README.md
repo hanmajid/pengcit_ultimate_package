@@ -3,8 +3,11 @@
 ## Structure
 
 * [shared/](app/src/main/java/com/hanmajid/pengcitultimatepackage/shared)  
-  - `MyImage.java`  
+  - `ChainCode.java`
+  - `Distribution.java`
   - `MyColor.java`
+  - `MyImage.java`
+  - `ValueMapping.java`
 * [bordertracing/](app/src/main/java/com/hanmajid/pengcitultimatepackage/bordertracing)
   - `IBorderTracing.java`
   - `ChainCodeBorderTracing.java`
@@ -22,6 +25,7 @@
   - `ValueGCGrayscaling.java`
 * [histogram/](app/src/main/java/com/hanmajid/pengcitultimatepackage/histogram)
   - `IHistogram.java`
+  - `MyHistogram.java`
 * [thinning/](app/src/main/java/com/hanmajid/pengcitultimatepackage/thinning)  
   - `IThinning.java`  
   - `ZhangSuenThinning.java`  

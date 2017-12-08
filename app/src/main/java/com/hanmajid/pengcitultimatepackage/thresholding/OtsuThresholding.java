@@ -21,7 +21,7 @@ public class OtsuThresholding implements IThresholding {
 
     @Override
     public MyImage doThresholding(MyImage src) {
-        MyImage img = src.clone(src);
+        MyImage img = src.clone();
 
         int width = img.getWidth();
         int height = img.getHeight();

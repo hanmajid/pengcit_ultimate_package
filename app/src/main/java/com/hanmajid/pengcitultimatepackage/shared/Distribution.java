@@ -13,13 +13,15 @@ public class Distribution {
     int[] green;
     int[] blue;
     int[] intensity;
+    int size;
 
-    public Distribution(int length, int[] red, int[] green, int[] blue, int[] intensity) {
+    public Distribution(int length, int[] red, int[] green, int[] blue, int[] intensity, int size) {
         this.length = length;
         this.red = red;
         this.green = green;
         this.blue = blue;
         this.intensity = intensity;
+        this.size = size;
     }
 
     public Distribution() {
@@ -95,5 +97,13 @@ public class Distribution {
 
     public void setIntensity(int i, int intens) {
         intensity[i] = intens;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize() {
+        this.size = size;
     }
 }
