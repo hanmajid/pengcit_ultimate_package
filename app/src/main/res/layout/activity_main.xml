@@ -20,14 +20,16 @@
 
             <ImageView
                 android:id="@+id/img_original"
-                android:src="@drawable/anthony"
-                android:layout_width="wrap_content"
-                android:layout_height="200dp"/>
+                android:src="@drawable/kamal"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="400dp"/>
 
             <ImageView
                 android:id="@+id/img_processed"
-                android:layout_width="wrap_content"
-                android:layout_height="200dp"/>
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="400dp"/>
 
         </LinearLayout>
 

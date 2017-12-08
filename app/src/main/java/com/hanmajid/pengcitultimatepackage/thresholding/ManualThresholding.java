@@ -15,7 +15,7 @@ public class ManualThresholding implements IThresholding {
 
     private int threshold;
 
-    ManualThresholding(int threshold) {
+    public ManualThresholding(int threshold) {
         this.threshold = threshold;
     }
 

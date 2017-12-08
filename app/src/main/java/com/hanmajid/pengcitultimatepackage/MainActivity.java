@@ -27,6 +27,7 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.hanmajid.pengcitultimatepackage.bordertracing.ChainCodeBorderTracing;
 import com.hanmajid.pengcitultimatepackage.grayscaling.GleamGrayscaling;
 import com.hanmajid.pengcitultimatepackage.grayscaling.IntensityGrayscaling;
 import com.hanmajid.pengcitultimatepackage.grayscaling.ValueGrayscaling;
@@ -34,6 +35,7 @@ import com.hanmajid.pengcitultimatepackage.histogram.MyHistogram;
 import com.hanmajid.pengcitultimatepackage.shared.Distribution;
 import com.hanmajid.pengcitultimatepackage.shared.MyImage;
 import com.hanmajid.pengcitultimatepackage.thinning.ZhangSuenThinning;
+import com.hanmajid.pengcitultimatepackage.thresholding.ManualThresholding;
 import com.hanmajid.pengcitultimatepackage.thresholding.OtsuThresholding;
 
 import java.util.ArrayList;
@@ -85,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void process() {
         // convert to MyImage
-        Bitmap bitmapOriginal = BitmapFactory.decodeResource(getResources(), R.drawable.anthony);
+        Bitmap bitmapOriginal = BitmapFactory.decodeResource(getResources(), R.drawable.kamal);
         MyImage imgOriginal = BitmapToMyImage(bitmapOriginal);
         MyImage imgProcessed, imgProcessed2;
 
@@ -96,18 +98,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imgProcessed = intensityGrayscaling.doGrayscaling(imgOriginal);
 //        ValueGrayscaling valueGrayscaling = new ValueGrayscaling();
 //        imgProcessed = valueGrayscaling.doGrayscaling(imgOriginal);
-        MyHistogram myHistogram = new MyHistogram();
-        imgProcessed2 = myHistogram.equalizeHistogram(imgProcessed);
+//        MyHistogram myHistogram = new MyHistogram();
+//        imgProcessed2 = myHistogram.equalizeHistogram(imgProcessed);
 
-//        OtsuThresholding otsuThresholding = new OtsuThresholding();
-//        imgProcessed = otsuThresholding.doThresholding(imgProcessed);
+        OtsuThresholding otsuThresholding = new OtsuThresholding();
+        imgProcessed = otsuThresholding.doThresholding(imgProcessed);
+//        ManualThresholding manualThresholding = new ManualThresholding(100);
+//        imgProcessed = manualThresholding.doThresholding(imgProcessed);
 //        ZhangSuenThinning zhangSuenThinning = new ZhangSuenThinning();
 //        imgProcessed = zhangSuenThinning.doThinning(imgOriginal);
 
+        // border tracing
+        ChainCodeBorderTracing chainCodeBorderTracing = new ChainCodeBorderTracing(10, 100);
+        imgProcessed = chainCodeBorderTracing.doBorderTracing(imgProcessed);
+
         // convert to bitmap
-        Bitmap bitmapProcessed = MyImageToBitmap(imgProcessed);
-        Bitmap bitmapProcessed2 = MyImageToBitmap(imgProcessed2);
-        imgViewOriginal.setImageBitmap(bitmapProcessed);
+//        Bitmap bitmapProcessed = MyImageToBitmap(imgProcessed);
+        Bitmap bitmapProcessed2 = MyImageToBitmap(imgProcessed);
+//        imgViewOriginal.setImageBitmap(bitmapProcessed);
         imgViewProcessed.setImageBitmap(bitmapProcessed2);
     }
 
