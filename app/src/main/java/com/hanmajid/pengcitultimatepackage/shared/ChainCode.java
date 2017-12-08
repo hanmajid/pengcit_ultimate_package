@@ -46,7 +46,7 @@ public class ChainCode {
     }
 
     public boolean isInside(int x, int y) {
-        
+
         return false;
     }
 }
