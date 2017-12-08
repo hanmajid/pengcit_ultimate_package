@@ -11,6 +11,12 @@
 * [bordertracing/](app/src/main/java/com/hanmajid/pengcitultimatepackage/bordertracing)
   - `IBorderTracing.java`
   - `ChainCodeBorderTracing.java`
+* [edgedetection/](app/src/main/java/com/hanmajid/pengcitultimatepackage/edgedetection)  
+  - `IEdgeDetection.java`
+  - `SobelEdgeDetection.java`  
+* [facerecognition/](app/src/main/java/com/hanmajid/pengcitultimatepackage/facerecognition)  
+  - `IFaceRecognition.java`
+  - `MyFaceRecognition.java`  
 * [grayscaling/](app/src/main/java/com/hanmajid/pengcitultimatepackage/grayscaling)  
   - `IGrayscaling.java`  
   - `GleamGrayscaling.java`  
