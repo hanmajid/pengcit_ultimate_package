@@ -8,6 +8,7 @@
     tools:context="com.hanmajid.pengcitultimatepackage.MainActivity">
 
     <LinearLayout
+        android:id="@+id/root_linear_layout"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -35,6 +36,11 @@
             android:text="Process"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/chart"
+            android:layout_width="match_parent"
+            android:layout_height="300dp" />
 
     </LinearLayout>
 

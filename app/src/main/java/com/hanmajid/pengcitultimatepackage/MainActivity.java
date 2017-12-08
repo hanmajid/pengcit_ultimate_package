@@ -16,11 +16,25 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
 import com.hanmajid.pengcitultimatepackage.grayscaling.GleamGrayscaling;
+import com.hanmajid.pengcitultimatepackage.histogram.MyHistogram;
+import com.hanmajid.pengcitultimatepackage.shared.Distribution;
 import com.hanmajid.pengcitultimatepackage.shared.MyImage;
 import com.hanmajid.pengcitultimatepackage.thinning.ZhangSuenThinning;
 import com.hanmajid.pengcitultimatepackage.thresholding.OtsuThresholding;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -35,6 +49,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         setupView();
+
+        // TODO
+        Bitmap bitmapOriginal =((BitmapDrawable)imgViewOriginal.getDrawable()).getBitmap();
+        MyImage imgOriginal = BitmapToMyImage(bitmapOriginal);
+
+        LineChart chart = (LineChart) findViewById(R.id.chart);
+        MyHistogram myHistogram = new MyHistogram();
+//        Distribution distribution = myHistogram.countDistribution(imgOriginal);
+        Distribution distribution = myHistogram.countCummulativeDistribution(imgOriginal);
+        myHistogram.drawColorHistogram(chart, distribution);
     }
 
     private void setupView() {
