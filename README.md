@@ -10,13 +10,19 @@
   - `ValueMapping.java`
 * [bordertracing/](app/src/main/java/com/hanmajid/pengcitultimatepackage/bordertracing)
   - `IBorderTracing.java`
-  - `ChainCodeBorderTracing.java`
+  - `ChainCodeBorderTracing.java`  
+* [convolution/](app/src/main/java/com/hanmajid/pengcitultimatepackage/convolution)
+  - `IConvolution.java`
+  - `BlurringConvolution.java`
+  - `EmbossingConvolution.java`  
+  - `SharpeningConvolution.java`  
 * [edgedetection/](app/src/main/java/com/hanmajid/pengcitultimatepackage/edgedetection)  
   - `IEdgeDetection.java`
   - `SobelEdgeDetection.java`  
 * [facerecognition/](app/src/main/java/com/hanmajid/pengcitultimatepackage/facerecognition)  
   - `IFaceRecognition.java`
-  - `MyFaceRecognition.java`  
+  - `ColorModelFaceRecognition.java`
+  - `GoldenRatioFaceRecognition.java`  
 * [grayscaling/](app/src/main/java/com/hanmajid/pengcitultimatepackage/grayscaling)  
   - `IGrayscaling.java`  
   - `GleamGrayscaling.java`  
@@ -39,3 +45,4 @@
   - `IThresholding.java`  
   - `ManualThresholding.java`  
   - `OtsuThresholding.java`  
+* `MainActivity.java`

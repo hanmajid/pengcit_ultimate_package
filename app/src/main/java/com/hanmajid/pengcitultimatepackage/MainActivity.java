@@ -29,6 +29,8 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.hanmajid.pengcitultimatepackage.bordertracing.ChainCodeBorderTracing;
+import com.hanmajid.pengcitultimatepackage.convolution.BlurringConvolution;
+import com.hanmajid.pengcitultimatepackage.convolution.SharpeningConvolution;
 import com.hanmajid.pengcitultimatepackage.facerecognition.ColorModelFaceRecognition;
 import com.hanmajid.pengcitultimatepackage.facerecognition.GoldenRatioFaceRecognition;
 import com.hanmajid.pengcitultimatepackage.grayscaling.GleamGrayscaling;
@@ -94,15 +96,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void process() {
         // convert to MyImage
-        Bitmap bitmapOriginal = BitmapFactory.decodeResource(getResources(), R.drawable.group);
+        Bitmap bitmapOriginal = BitmapFactory.decodeResource(getResources(), R.drawable.majid);
         MyImage imgOriginal = BitmapToMyImage(bitmapOriginal);
         MyImage imgProcessed, imgProcessed2;
 
         // process
 //        GleamGrayscaling gleamGrayscaling = new GleamGrayscaling();
 //        imgProcessed = gleamGrayscaling.doGrayscaling(imgOriginal);
-//        IntensityGrayscaling intensityGrayscaling = new IntensityGrayscaling();
-//        imgProcessed = intensityGrayscaling.doGrayscaling(imgOriginal);
+        IntensityGrayscaling intensityGrayscaling = new IntensityGrayscaling();
+        imgProcessed = intensityGrayscaling.doGrayscaling(imgOriginal);
+
+        Bitmap bitmapProcessed = MyImageToBitmap(imgProcessed);
 //        ValueGrayscaling valueGrayscaling = new ValueGrayscaling();
 //        imgProcessed = valueGrayscaling.doGrayscaling(imgOriginal);
 //        MyHistogram myHistogram = new MyHistogram();
@@ -124,13 +128,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 //        text1.setText("Ratio d/m: "+goldenRatioFaceRecognition.getEyeDistance()/goldenRatioFaceRecognition.getMouthWidth());
 
-        ColorModelFaceRecognition colorModelFaceRecognition = new ColorModelFaceRecognition();
-        imgProcessed = colorModelFaceRecognition.doFaceRecognition(imgOriginal);
+//        ColorModelFaceRecognition colorModelFaceRecognition = new ColorModelFaceRecognition();
+//        imgProcessed = colorModelFaceRecognition.doFaceRecognition(imgOriginal);
+
+//        SharpeningConvolution sharpeningConvolution = new SharpeningConvolution();
+//        imgProcessed = sharpeningConvolution.doConvolution(imgProcessed);
+        BlurringConvolution blurringConvolution = new BlurringConvolution();
+        imgProcessed = blurringConvolution.doConvolution(imgProcessed);
 
         // convert to bitmap
-//        Bitmap bitmapProcessed = MyImageToBitmap(imgProcessed);
         Bitmap bitmapProcessed2 = MyImageToBitmap(imgProcessed);
-//        imgViewOriginal.setImageBitmap(bitmapProcessed);
+        imgViewOriginal.setImageBitmap(bitmapProcessed);
         imgViewProcessed.setImageBitmap(bitmapProcessed2);
     }
 
