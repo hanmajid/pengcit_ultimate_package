@@ -13,26 +13,155 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <Button
+            android:id="@+id/select_image"
+            android:text="Select Image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/reset_image"
+            android:text="Reset Image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/img_original"
-                android:src="@drawable/majid"
                 android:layout_weight="1"
                 android:layout_width="0dp"
-                android:layout_height="400dp"/>
+                android:layout_height="300dp"/>
 
             <ImageView
                 android:id="@+id/img_processed"
                 android:layout_weight="1"
                 android:layout_width="0dp"
-                android:layout_height="400dp"/>
-
+                android:layout_height="300dp"/>
         </LinearLayout>
 
+        <TextView
+            android:text="Grayscaling"
+            android:background="@color/colorAccent"
+            android:textColor="@color/colorPrimary"
+            android:layout_margin="5dp"
+            android:textSize="20sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btn_grayscaling"
+            android:text="Do Grayscaling"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="Thresholding (Otsu)"
+            android:background="@color/colorAccent"
+            android:textColor="@color/colorPrimary"
+            android:layout_margin="5dp"
+            android:textSize="20sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btn_thresholding"
+            android:text="Do Thresholding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="Edge Detection (Sobel)"
+            android:background="@color/colorAccent"
+            android:textColor="@color/colorPrimary"
+            android:layout_margin="5dp"
+            android:textSize="20sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btn_edge"
+            android:text="Do Edge Detection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="Border Tracing (Chain Code)"
+            android:background="@color/colorAccent"
+            android:textColor="@color/colorPrimary"
+            android:layout_margin="5dp"
+            android:textSize="20sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btn_border"
+            android:text="Do Border Tracing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="Face Recognition (Color Model)"
+            android:background="@color/colorAccent"
+            android:textColor="@color/colorPrimary"
+            android:layout_margin="5dp"
+            android:textSize="20sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btn_face"
+            android:text="Do Face Recognition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="Thinning (Zhang-Suen)"
+            android:background="@color/colorAccent"
+            android:textColor="@color/colorPrimary"
+            android:layout_margin="5dp"
+            android:textSize="20sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btn_thinning"
+            android:text="Do Thinning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="Convolution (Sharpening)"
+            android:background="@color/colorAccent"
+            android:textColor="@color/colorPrimary"
+            android:layout_margin="5dp"
+            android:textSize="20sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btn_convolution"
+            android:text="Do Convolution"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:text="Histogram"
+            android:background="@color/colorAccent"
+            android:textColor="@color/colorPrimary"
+            android:layout_margin="5dp"
+            android:textSize="20sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btn_histogram"
+            android:text="Do Histogram"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/text_1"
@@ -40,13 +169,6 @@
             android:textSize="20sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-
-        <Button
-            android:id="@+id/btn_process"
-            android:text="Process"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
 
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/chart"
