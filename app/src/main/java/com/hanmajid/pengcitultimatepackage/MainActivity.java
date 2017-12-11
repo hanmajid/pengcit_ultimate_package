@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
@@ -28,6 +29,8 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.hanmajid.pengcitultimatepackage.bordertracing.ChainCodeBorderTracing;
+import com.hanmajid.pengcitultimatepackage.facerecognition.ColorModelFaceRecognition;
+import com.hanmajid.pengcitultimatepackage.facerecognition.GoldenRatioFaceRecognition;
 import com.hanmajid.pengcitultimatepackage.grayscaling.GleamGrayscaling;
 import com.hanmajid.pengcitultimatepackage.grayscaling.IntensityGrayscaling;
 import com.hanmajid.pengcitultimatepackage.grayscaling.ValueGrayscaling;
@@ -47,6 +50,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ImageView imgViewProcessed;
 
     Button btnProcess;
+
+    TextView text1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +77,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         btnProcess = (Button) findViewById(R.id.btn_process);
         btnProcess.setOnClickListener(this);
+
+        text1 = (TextView) findViewById(R.id.text_1);
     }
 
     @Override
@@ -87,30 +94,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void process() {
         // convert to MyImage
-        Bitmap bitmapOriginal = BitmapFactory.decodeResource(getResources(), R.drawable.kamal);
+        Bitmap bitmapOriginal = BitmapFactory.decodeResource(getResources(), R.drawable.group);
         MyImage imgOriginal = BitmapToMyImage(bitmapOriginal);
         MyImage imgProcessed, imgProcessed2;
 
         // process
 //        GleamGrayscaling gleamGrayscaling = new GleamGrayscaling();
 //        imgProcessed = gleamGrayscaling.doGrayscaling(imgOriginal);
-        IntensityGrayscaling intensityGrayscaling = new IntensityGrayscaling();
-        imgProcessed = intensityGrayscaling.doGrayscaling(imgOriginal);
+//        IntensityGrayscaling intensityGrayscaling = new IntensityGrayscaling();
+//        imgProcessed = intensityGrayscaling.doGrayscaling(imgOriginal);
 //        ValueGrayscaling valueGrayscaling = new ValueGrayscaling();
 //        imgProcessed = valueGrayscaling.doGrayscaling(imgOriginal);
 //        MyHistogram myHistogram = new MyHistogram();
 //        imgProcessed2 = myHistogram.equalizeHistogram(imgProcessed);
 
-        OtsuThresholding otsuThresholding = new OtsuThresholding();
-        imgProcessed = otsuThresholding.doThresholding(imgProcessed);
+//        OtsuThresholding otsuThresholding = new OtsuThresholding();
+//        imgProcessed = otsuThresholding.doThresholding(imgProcessed);
 //        ManualThresholding manualThresholding = new ManualThresholding(100);
 //        imgProcessed = manualThresholding.doThresholding(imgProcessed);
 //        ZhangSuenThinning zhangSuenThinning = new ZhangSuenThinning();
 //        imgProcessed = zhangSuenThinning.doThinning(imgOriginal);
 
         // border tracing
-        ChainCodeBorderTracing chainCodeBorderTracing = new ChainCodeBorderTracing(10, 100);
-        imgProcessed = chainCodeBorderTracing.doBorderTracing(imgProcessed);
+//        ChainCodeBorderTracing chainCodeBorderTracing = new ChainCodeBorderTracing(10, 100);
+//        imgProcessed = chainCodeBorderTracing.doBorderTracing(imgProcessed);
+
+//        GoldenRatioFaceRecognition goldenRatioFaceRecognition = new GoldenRatioFaceRecognition();
+//        imgProcessed = goldenRatioFaceRecognition.doFaceRecognition(imgOriginal);
+
+//        text1.setText("Ratio d/m: "+goldenRatioFaceRecognition.getEyeDistance()/goldenRatioFaceRecognition.getMouthWidth());
+
+        ColorModelFaceRecognition colorModelFaceRecognition = new ColorModelFaceRecognition();
+        imgProcessed = colorModelFaceRecognition.doFaceRecognition(imgOriginal);
 
         // convert to bitmap
 //        Bitmap bitmapProcessed = MyImageToBitmap(imgProcessed);

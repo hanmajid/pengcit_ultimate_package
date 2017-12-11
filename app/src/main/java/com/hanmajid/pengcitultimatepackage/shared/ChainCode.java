@@ -3,7 +3,7 @@ package com.hanmajid.pengcitultimatepackage.shared;
 /**
  * Project: PengcitUltimatePackage
  * by hanmajid (email: han.majid2004@gmail.com)
- * <p>
+ *
  * Created on 12/6/2017.
  */
 
@@ -15,6 +15,8 @@ public class ChainCode {
     int maxX;
     int minY;
     int maxY;
+    int centroidX;
+    int centroidY;
 
     public ChainCode() {
     }
@@ -23,7 +25,7 @@ public class ChainCode {
         this.chain = chain;
         this.x = x;
         this.y = y;
-        setMinMax();
+        setMinMaxCentroid();
     }
 
     public Integer[] getChain() {
@@ -50,6 +52,54 @@ public class ChainCode {
         this.y = y;
     }
 
+    public int getMinX() {
+        return minX;
+    }
+
+    public void setMinX(int minX) {
+        this.minX = minX;
+    }
+
+    public int getMaxX() {
+        return maxX;
+    }
+
+    public void setMaxX(int maxX) {
+        this.maxX = maxX;
+    }
+
+    public int getMinY() {
+        return minY;
+    }
+
+    public void setMinY(int minY) {
+        this.minY = minY;
+    }
+
+    public int getMaxY() {
+        return maxY;
+    }
+
+    public void setMaxY(int maxY) {
+        this.maxY = maxY;
+    }
+
+    public int getCentroidX() {
+        return centroidX;
+    }
+
+    public void setCentroidX(int centroidX) {
+        this.centroidX = centroidX;
+    }
+
+    public int getCentroidY() {
+        return centroidY;
+    }
+
+    public void setCentroidY(int centroidY) {
+        this.centroidY = centroidY;
+    }
+
     public boolean isInside(int x, int y, MyImage src) {
         if(x >= minX && x <= maxX && y >= minY && y <= maxY) {
             boolean inside = false;
@@ -70,7 +120,7 @@ public class ChainCode {
         return false;
     }
 
-    public void setMinMax() {
+    public void setMinMaxCentroid() {
         int currentX = getDirX(chain[0], x);
         int currentY = getDirY(chain[0], y);
         minX = currentX;
@@ -89,6 +139,8 @@ public class ChainCode {
             if(currentY > maxY)
                 maxY = currentY;
         }
+        centroidX = (maxX+minX) / 2;
+        centroidY = (maxY+minY) / 2;
     }
 
     private int getDirX(int dir, int x) {

@@ -1,8 +1,5 @@
 package com.hanmajid.pengcitultimatepackage.bordertracing;
 
-import android.graphics.Color;
-import android.util.Log;
-
 import com.hanmajid.pengcitultimatepackage.shared.ChainCode;
 import com.hanmajid.pengcitultimatepackage.shared.MyColor;
 import com.hanmajid.pengcitultimatepackage.shared.MyImage;
@@ -20,6 +17,7 @@ import java.util.List;
 public class ChainCodeBorderTracing implements IBorderTracing {
 
     private ChainCode[] chainCode;
+    private int countChainCode;
     private int maxObject;
     private int minChainCodeLength;
     private int maxIteration;
@@ -28,6 +26,7 @@ public class ChainCodeBorderTracing implements IBorderTracing {
         this.maxObject = maxObject;
         this.minChainCodeLength = minChainCodeLength;
         this.maxIteration = 2000;
+        this.countChainCode = 0;
     }
 
     @Override
@@ -58,8 +57,9 @@ public class ChainCodeBorderTracing implements IBorderTracing {
                         if(!isChecked) {
                             if(hasNeighbor(img, x, y)) {
                                 ChainCode c = generateChainCode(img, x, y);
-                                if(c != null)
+                                if(c != null) {
                                     chainCode[countObject++] = c;
+                                }
                             }
                         }
                     }
@@ -68,6 +68,10 @@ public class ChainCodeBorderTracing implements IBorderTracing {
         }
 
         return img;
+    }
+
+    public ChainCode[] getChainCode() {
+        return chainCode;
     }
 
     private boolean hasNeighbor(MyImage src, int x, int y) {
@@ -181,6 +185,16 @@ public class ChainCodeBorderTracing implements IBorderTracing {
             return null;
         Integer[] c = chains.toArray(new Integer[chains.size()]);
 
-        return new ChainCode(c, x, y);
+        ChainCode chainCode = new ChainCode(c, x, y);
+        this.countChainCode++;
+        return chainCode;
+    }
+
+    public int getCountChainCode() {
+        return countChainCode;
+    }
+
+    public void setCountChainCode(int countChainCode) {
+        this.countChainCode = countChainCode;
     }
 }

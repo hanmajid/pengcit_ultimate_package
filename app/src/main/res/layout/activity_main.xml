@@ -20,7 +20,7 @@
 
             <ImageView
                 android:id="@+id/img_original"
-                android:src="@drawable/kamal"
+                android:src="@drawable/group"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="400dp"/>
@@ -33,11 +33,20 @@
 
         </LinearLayout>
 
+
+        <TextView
+            android:id="@+id/text_1"
+            android:text="-"
+            android:textSize="20sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
         <Button
             android:id="@+id/btn_process"
             android:text="Process"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+
 
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/chart"
